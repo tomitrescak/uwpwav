@@ -83,9 +83,11 @@ namespace WavRecorder
 
                 // read file
                 await Windows.System.Threading.ThreadPool.RunAsync(
-                    (workItem) =>
+                    async (workItem) =>
                     {
-                        parser.OpenFile(storageFile.Path);
+                        IRandomAccessStream stream = await storageFile.OpenAsync(FileAccessMode.Read);
+                        Stream sstream = stream.AsStream();
+                        parser.OpenFile(sstream);
                         // Define the processing delegates
                         RiffParser.ProcessChunkElement pc = ProcessChunk;
 

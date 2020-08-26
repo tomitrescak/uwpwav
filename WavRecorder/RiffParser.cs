@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 /// <copyright>
 /// Giora Tamir (giora@gtamir.com), 2005
@@ -63,7 +65,7 @@ namespace WavRecorder
         private string m_shortname;
         private long m_filesize;
         private int m_datasize;
-        public FileStream m_stream;
+        public Stream m_stream;
         private int m_fileriff;
         private int m_filetype;
 
@@ -160,7 +162,7 @@ namespace WavRecorder
         /// </summary>
         /// <param name="filename">File to examine</param>
         /// <returns>True if file is a RIFF file</returns>
-        public unsafe void OpenFile(string filename)
+        public unsafe async void OpenFile(Stream stream)
         {
             // Sanity check
             if (null != m_stream) {
@@ -172,15 +174,17 @@ namespace WavRecorder
             // Opening a new file
 			try 
 			{
-				FileInfo fi = new FileInfo(filename);
-				m_filename = fi.FullName;
-				m_shortname = fi.Name;
-				m_filesize = fi.Length;
+                //FileInfo fi = new FileInfo(filename);
+                //m_filename = fi.FullName;
+                //m_shortname = fi.Name;
+                //m_filesize = fi.Length;
+                
 
-				//Console.WriteLine(ShortName + " is a valid file.");
+                //Console.WriteLine(ShortName + " is a valid file.");
 
-				// Read the RIFF header
-				m_stream = new FileStream(m_filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+                // Read the RIFF header
+                m_stream = stream;
+                // m_stream = new FileStream(m_filename, FileMode.Open, FileAccess.Read, FileShare.Read);
 				int FourCC;
 				int datasize;
 				int fileType;
@@ -201,16 +205,16 @@ namespace WavRecorder
 					//Console.WriteLine(ShortName + " has a specific type of \"" + FromFourCC(fileType) + "\"");
 
 					m_datasize = datasize;
-					if (m_filesize >= m_datasize + TWODWORDSSIZE)
-					{
-						//Console.WriteLine(ShortName + " has a valid size");
-					}
-					else
-					{
-						m_stream.Flush(); 
-                        m_stream = null;
-						throw new Exception("Error. Truncated file " + FileName);
-					}
+					//if (m_filesize >= m_datasize + TWODWORDSSIZE)
+					//{
+					//	//Console.WriteLine(ShortName + " has a valid size");
+					//}
+					//else
+					//{
+					//	m_stream.Flush(); 
+     //                   m_stream = null;
+					//	throw new Exception("Error. Truncated file " + FileName);
+					//}
 				}
 				else
 				{
