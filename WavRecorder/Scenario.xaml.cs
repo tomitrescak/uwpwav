@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WavRecorder.Recorders;
+using WavRecorder.Utils;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -47,23 +49,6 @@ namespace WavRecorder
             this.InitializeComponent();
             this.CheckFile();
             this.ScenarioHeader = header;
-        }
-
-        struct WavHeader
-        {
-            public byte[] riffID; // "riff"
-            public uint size;  // ファイルサイズ-8
-            public byte[] wavID;  // "WAVE"
-            public byte[] fmtID;  // "fmt "
-            public uint fmtSize; // fmtチャンクのバイト数
-            public ushort format; // フォーマット
-            public ushort channels; // チャンネル数
-            public uint sampleRate; // サンプリングレート
-            public uint bytePerSec; // データ速度
-            public ushort blockSize; // ブロックサイズ
-            public ushort bit;  // 量子化ビット数
-            public byte[] dataID; // "data"
-            public uint dataSize; // 波形データのバイト数
         }
 
         public async void CheckFile()

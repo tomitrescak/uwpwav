@@ -9,7 +9,7 @@ using Windows.Storage.Streams;
 /// Giora Tamir (giora@gtamir.com), 2005
 /// </copyright>
 
-namespace WavRecorder
+namespace WavRecorder.Utils
 {
     #region RiffParserException
 

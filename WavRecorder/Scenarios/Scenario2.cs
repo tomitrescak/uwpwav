@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Media;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
+using WavRecorder.Recorders;
 
 namespace WavRecorder.Scenarios
 {
@@ -21,7 +22,7 @@ namespace WavRecorder.Scenarios
                 ChannelCount = 1,
                 SampleRate = 16000
             };
-            var scenario = new Scenario(mediaCatureSpeechDefaultScenario, "Media / Default");
+            var scenario = new Scenario(mediaCatureSpeechDefaultScenario, "1 Channel / Media / Default");
 
             return scenario;
         }

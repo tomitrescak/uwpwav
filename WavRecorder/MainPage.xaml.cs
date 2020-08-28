@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WavRecorder.Recorders;
 using WavRecorder.Scenarios;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -34,10 +35,17 @@ namespace WavRecorder
             //this.MediaCatureSpeechDefaultScenario.Recorder = mediaCatureSpeechDefaultScenario;
             //this.MediaCatureSpeechDefaultScenario.CheckFile();
 
-            this.Stack.Children.Add(Scenario1.Init());
-            this.Stack.Children.Add(Scenario2.Init());
-            this.Stack.Children.Add(Scenario3.Init());
-            this.Stack.Children.Add(Scenario4.Init());
+            //this.Stack.Children.Add(new SpeechRecognizerControl(
+            //    "Push Recognizer",
+            //    new PushStreamRecognizer("pushRecognition.wav")));
+
+            this.Stack.Children.Add(new SpeechRecognizerControl(
+                "Frame Recognizer",
+                new FrameRecognizer("frameRecognition.wav")));
+
+            //this.Stack.Children.Add(Scenario1.Init());
+            //this.Stack.Children.Add(Scenario2.Init());
+            //this.Stack.Children.Add(Scenario3.Init());
 
         }
     }

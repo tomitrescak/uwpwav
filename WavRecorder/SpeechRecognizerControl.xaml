@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="WavRecorder.SpeechRecognizerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WavRecorder"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid HorizontalAlignment="Stretch" Height="250">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Name="Header" Text="Header" FontWeight="Bold" VerticalAlignment="Center" Margin="0 0 0 8"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <ComboBox PlaceholderText="From" Name="FromLanguage">
+                <x:String>en-US</x:String>
+                <x:String>en-AU</x:String>
+                <x:String>cs-CZ</x:String>
+                <x:String>de</x:String>
+                <x:String>es-ES</x:String>
+                <x:String>it-IT</x:String>
+            </ComboBox>
+            <ComboBox PlaceholderText="To" Name="ToLanguage">
+                <x:String>en</x:String>
+                <x:String>cs</x:String>
+                <x:String>de</x:String>
+                <x:String>es</x:String>
+                <x:String>it</x:String>
+                <x:String>hi</x:String>
+                <x:String>zh-Hans</x:String>
+            </ComboBox>
+            <Button Name="ToggleButton" Content="Start" Click="ToggleRecognition" />
+            <Ellipse Width="10" Height="10" Fill="Red" Margin="16 0 0 0" VerticalAlignment="Center" Name="Circle" Visibility="Collapsed" />
+            <TextBlock Name="StatusText" Text="Stopped ..." VerticalAlignment="Center" Margin="8 0 0 0"/>
+        </StackPanel>
+        <TextBlock Grid.Row="2" Text="Recognition" FontWeight="Bold" VerticalAlignment="Center" Margin="0 0 0 8"/>
+        <ScrollViewer Padding="8" Grid.Row="3" Name="Scroller1"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <TextBlock Name="RecognisedText" TextWrapping="WrapWholeWords"/>
+        </ScrollViewer>
+        <TextBlock Grid.Row="4" Text="Translation" FontWeight="Bold" VerticalAlignment="Center" Margin="0 0 0 8"/>
+        <ScrollViewer Padding="8" Grid.Row="5" Name="Scroller2"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <TextBlock Name="TranslatedText" TextWrapping="WrapWholeWords"/>
+        </ScrollViewer>
+    </Grid>
+
+
+</UserControl>

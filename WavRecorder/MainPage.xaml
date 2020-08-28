@@ -10,7 +10,6 @@
 
     <Grid>
         <StackPanel Padding="8,8,8,8" Name="Stack">
-            
         </StackPanel>
 
     </Grid>
